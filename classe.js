@@ -3,36 +3,41 @@ class Heroi {
   constructor(nome, idade, tipo) {
     this.nome = nome;
     this.idade = idade;
-    this.tipo = tipo;
+    // O .trim() remove espaços extras e o .toLowerCase() ignora maiúsculas
+    this.tipo = tipo.trim().toLowerCase();
   }
 
-  // Método atacar seguindo os requisitos da tabela
   atacar() {
     let ataque = "";
 
-    // Estrutura de decisão para definir o tipo de ataque
-    if (this.tipo === "mago") {
-      ataque = "usou magia";
-    } else if (this.tipo === "guerreiro") {
-      ataque = "usou espada";
-    } else if (this.tipo === "monge") {
-      ataque = "usou artes marciais";
-    } else if (this.tipo === "ninja") {
-      ataque = "usou shuriken";
-    } else if (this.tipo === "sereia") {
-      ataque = "usou tridente";
+    // Usamos o .includes() para que o código aceite "o guerreiro" ou "guerreiro"
+    if (this.tipo.includes("mago")) {
+      ataque = " magia";
+    } else if (this.tipo.includes("guerreiro")) {
+      ataque = " espada";
+    } else if (this.tipo.includes("monge")) {
+      ataque = " artes marciais";
+    } else if (this.tipo.includes("ninja")) {
+      ataque = " shuriken";
+    } else if (this.tipo.includes("sereia")) {
+      ataque = " tridente";
     } else {
       ataque = "usou um ataque genérico";
     }
 
-    // Exibindo a mensagem final
+    // Exibindo a mensagem final formatada
     console.log(`${this.tipo} atacou usando ${ataque}`);
   }
 }
 
-// Exemplos de uso (Como o sistema da DIO vai testar seu código)
-let meuHeroi = new Heroi("Warley", 26, "guerreiro");
-meuHeroi.atacar(); // Saída: o guerreiro atacou usando espada
+// --- TESTES ---
 
-let magoHeroi = new Heroi("Luá", 39, "sereia");
-magoHeroi.atacar(); // Saída: o mago atacou usando magia
+// 1. Teste do Guerreiro
+let meuHeroi = new Heroi("Warley", 26, "o guerreiro");
+meuHeroi.atacar(); 
+// Saída: o guerreiro atacou usando usou espada
+
+// 2. Teste da Sereia Luá
+let heroiSereia = new Heroi("Luá", 39, "a sereia luá");
+heroiSereia.atacar(); 
+// Saída: a sereia luá atacou usando usou tridente
